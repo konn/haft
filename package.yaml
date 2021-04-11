@@ -1,0 +1,68 @@
+name:                haft
+version:             0.1.0.0
+github:              "konn/haft"
+license:             BSD3
+author:              "Hiromi Ishii"
+maintainer:          "konn.jinro_at_gmail.com"
+copyright:           "2021 Hiromi Ishii"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+synopsis:            A simple Haskell implementation of Raft Consensus Algorithm
+category:            Control
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/haft#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+ghc-options:
+- -Wall
+
+library:
+  source-dirs: src
+  dependencies: 
+  - aeson
+  - bytestring
+  - containers
+  - foldl
+  - hashable
+  - lens
+  - template-haskell
+  - concurrency
+  - exceptions
+  - mtl
+  - pipes
+  - text
+  - time
+  - unliftio
+  - unordered-containers
+  - dejafu
+
+executables:
+  haft-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - haft
+
+tests:
+  haft-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - haft

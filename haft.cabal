@@ -1,0 +1,83 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 5e179e4a00be121f1ad371e7a701259d1f749c7570648ddd074311312dfdfe35
+
+name:           haft
+version:        0.1.0.0
+synopsis:       A simple Haskell implementation of Raft Consensus Algorithm
+description:    Please see the README on GitHub at <https://github.com/githubuser/haft#readme>
+category:       Control
+homepage:       https://github.com/konn/haft#readme
+bug-reports:    https://github.com/konn/haft/issues
+author:         Hiromi Ishii
+maintainer:     konn.jinro_at_gmail.com
+copyright:      2021 Hiromi Ishii
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/konn/haft
+
+library
+  exposed-modules:
+      Control.Distributed.Raft
+      Control.Distributed.Raft.Types
+      Control.Monad.WithTVar
+  other-modules:
+      Paths_haft
+  hs-source-dirs:
+      src
+  ghc-options: -Wall
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , concurrency
+    , containers
+    , dejafu
+    , exceptions
+    , foldl
+    , hashable
+    , lens
+    , mtl
+    , pipes
+    , template-haskell
+    , text
+    , time
+    , unliftio
+    , unordered-containers
+  default-language: Haskell2010
+
+executable haft-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_haft
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , haft
+  default-language: Haskell2010
+
+test-suite haft-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_haft
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , haft
+  default-language: Haskell2010
